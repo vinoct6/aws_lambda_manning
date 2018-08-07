@@ -27,6 +27,14 @@ provider:
 #  stage: dev
 #  region: us-east-1
 
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+        - "s3:GetObject"
+        - "s3:PutObject"
+      Resource: "arn:aws:s3:::learning-serverless-resizer-images-vinoth/*"
+
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
 #    - Effect: "Allow"
@@ -57,8 +65,8 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  resizer:
+    handler: handler.resizer
     events:
       - s3:
           bucket: learning-serverless-resizer-images-vinoth
